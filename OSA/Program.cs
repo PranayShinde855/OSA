@@ -1,5 +1,9 @@
-var builder = WebApplication.CreateBuilder(args);
+using OSA.API.Infrastructure.Extensions;
 
+
+var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+services.GetAppSettingSection(builder.Configuration, out var AppSettigs);
 // Add services to the container.
 
 builder.Services.AddControllers();
