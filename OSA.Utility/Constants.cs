@@ -2,6 +2,6 @@
 {
     public static class Constants
     {
-        public static string CONNNECTION_STRING { get; set; } = string.Empty;
+        public static string CONNNECTION_STRING { get; set; } = "Connection";
     }
 }

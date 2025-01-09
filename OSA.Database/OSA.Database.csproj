@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Repositories\" />
+    <ProjectReference Include="..\OSA.DomainEntities\OSA.DomainEntities.csproj" />
   </ItemGroup>
 
 </Project>

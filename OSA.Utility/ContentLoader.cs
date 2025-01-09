@@ -36,7 +36,7 @@ namespace OSA.Utility
                         return en_US[key];
 
                 }
-            }sss
+            }
             catch
             {
                 return key;

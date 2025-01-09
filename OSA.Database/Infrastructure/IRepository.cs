@@ -1,6 +1,7 @@
 ﻿namespace OSA.Database.Infrastructure
 {
-    public interface IRepository
+    public interface IRepository<T> where T : class
     {
+        T Add(T entity);
     }
 }
