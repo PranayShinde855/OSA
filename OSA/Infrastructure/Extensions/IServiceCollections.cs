@@ -16,8 +16,10 @@ namespace OSA.API.Infrastructure.Extensions
     {
         public static void RegisterRepositories(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>))
-                .AddScoped(typeof(IUserRepository), typeof(UserRepository));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>))
+                //.AddTransient<IUserRepository, typeof(UserRepository));
+                .AddTransient<IUserRepository, UserRepository>();
         }
         public static void RegisterServices(this IServiceCollection services)
         {
@@ -61,7 +63,7 @@ namespace OSA.API.Infrastructure.Extensions
                 Console.WriteLine($"Stack Trace: {ex.StackTrace}"); throw;
             }
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            
         }
         public static void GetAppSettingSection(this IServiceCollection services, IConfiguration configuration, out AppSettings appSettings)
         {

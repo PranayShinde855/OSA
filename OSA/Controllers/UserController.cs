@@ -15,8 +15,8 @@ namespace OSA.API.Controllers
         {
             _userService = userService;
         }
-        [HttpGet("GetAsync")]
-        public IEnumerable<string> Get()
+        [HttpGet("AddAsync")]
+        public bool AddAsync()
         {
             var a = _userService.Add(new User()
             {
@@ -25,7 +25,13 @@ namespace OSA.API.Controllers
                 LastName = "Last Name",
                 IsActive = true
             });
-            return new string[] { "value1", "value2" };
+            return true;
+        }
+
+        [HttpGet("GetAsync")]
+        public async Task<List<User>> GetAsync()
+        {
+            return await _userService.GetAsync();
         }
 
         //private readonly OSADbContext _context;

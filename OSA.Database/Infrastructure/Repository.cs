@@ -1,10 +1,11 @@
-﻿using OSA.Database.DBContext;
+﻿using Microsoft.EntityFrameworkCore;
+using OSA.Database.DBContext;
 
 namespace OSA.Database.Infrastructure
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly OSADbContext _context;
+        public readonly OSADbContext _context;
         public Repository(OSADbContext context)
         {
             this._context = context;
@@ -14,6 +15,11 @@ namespace OSA.Database.Infrastructure
         {
             this._context.Set<T>().Add(entity);
             return entity;
+        }
+
+        public async Task<List<T>> GetAll()
+        {
+            return await this._context.Set<T>().ToListAsync();
         }
     }
 }

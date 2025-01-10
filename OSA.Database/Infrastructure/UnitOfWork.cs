@@ -16,14 +16,14 @@ namespace OSA.Database.Infrastructure
 
         public async Task<int> SaveChanges()
         {
-            try
-            {
+            //try
+            //{
                 return await this._context.SaveChangesAsync();
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
     }
 }
