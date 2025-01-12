@@ -34,6 +34,7 @@ namespace OSA.API.Controllers
             return await _userService.GetAsync();
         }
 
+        #region ADO
         //private readonly OSADbContext _context;
         //public UserController(OSADbContext context)
         //{
@@ -52,6 +53,7 @@ namespace OSA.API.Controllers
 
         //    _context.SaveChanges();
         //    return new string[] { "value1", "value2" };
-        //}
+        //} 
+        #endregion
     }
 }

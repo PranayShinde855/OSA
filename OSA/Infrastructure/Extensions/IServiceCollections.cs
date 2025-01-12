@@ -45,16 +45,17 @@ namespace OSA.API.Infrastructure.Extensions
             {
                 services.AddDbContext<OSADbContext>(options =>
                 {
-                    options.UseSqlServer(configuration.GetConnectionString(Constants.CONNNECTION_STRING), sqlOptions =>
-                    {
-                        sqlOptions.CommandTimeout(1000000);
-                        sqlOptions.EnableRetryOnFailure(
-                            maxRetryCount: 5,
-                            maxRetryDelay: TimeSpan.FromSeconds(30),
-                            errorNumbersToAdd: null
-                        );
-                    });
-                }, ServiceLifetime.Scoped);
+                    options.UseSqlServer(configuration.GetConnectionString("Connection"));
+                    //options.UseSqlServer(configuration.GetConnectionString(Constants.CONNNECTION_STRING), sqlOptions =>
+                    //{
+                    //    sqlOptions.CommandTimeout(1000000);
+                    //    sqlOptions.EnableRetryOnFailure(
+                    //        maxRetryCount: 5,
+                    //        maxRetryDelay: TimeSpan.FromSeconds(30),
+                    //        errorNumbersToAdd: null
+                    //    );
+                    //});
+                }, ServiceLifetime.Transient);
             }
             catch (Exception ex)
             {
