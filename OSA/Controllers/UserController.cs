@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OSA.API.Requests;
 using OSA.Database.DBContext;
 using OSA.Database.Infrastructure;
 using OSA.DomainEntities.Users;
@@ -15,8 +16,8 @@ namespace OSA.API.Controllers
         {
             _userService = userService;
         }
-        [HttpGet("AddAsync")]
-        public bool AddAsync()
+        [HttpPost("AddAsync")]
+        public bool AddAsync(UserRequest request)
         {
             var a = _userService.Add(new User()
             {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OSA.DomainEntities;
 using OSA.DomainEntities.Users;
 
 namespace OSA.Database.DBContext
@@ -11,5 +12,6 @@ namespace OSA.Database.DBContext
         }
 
         public DbSet<User> User { get; set; }
+        public DbSet<Company> Company { get; set; }
     }
 }

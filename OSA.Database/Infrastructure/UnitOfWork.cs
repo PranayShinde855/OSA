@@ -1,6 +1,5 @@
 ﻿using OSA.Database.DBContext;
 using OSA.Database.Interfaces;
-using OSA.Database.Repositories;
 
 namespace OSA.Database.Infrastructure
 {
@@ -8,22 +7,18 @@ namespace OSA.Database.Infrastructure
     {
         private readonly OSADbContext _context;
         public IUserRepository UserRepository { get; }
-        public UnitOfWork(OSADbContext context, IUserRepository userRepository)
+        public ICompanyRepository CompanyRepository { get; }
+        public UnitOfWork(OSADbContext context, IUserRepository userRepository
+            , ICompanyRepository companyRepository)
         {
             this._context = context;
             UserRepository = userRepository;
+            CompanyRepository = companyRepository;
         }
 
         public async Task<int> SaveChanges()
         {
-            //try
-            //{
                 return await this._context.SaveChangesAsync();
-            //}
-            //catch(Exception ex)
-            //{
-            //    throw ex;
-            //}
         }
     }
 }

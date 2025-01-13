@@ -1,7 +1,5 @@
-﻿using System.Configuration;
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using NetCore.AutoRegisterDi;
 using OSA.Database.DBContext;
 using OSA.Database.Infrastructure;
@@ -18,8 +16,9 @@ namespace OSA.API.Infrastructure.Extensions
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>))
-                //.AddTransient<IUserRepository, typeof(UserRepository));
-                .AddTransient<IUserRepository, UserRepository>();
+                .AddTransient<IUserRepository, UserRepository>()
+                .AddTransient<ICompanyRepository, CompanyRepository>()
+                ;
         }
         public static void RegisterServices(this IServiceCollection services)
         {

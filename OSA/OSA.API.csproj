@@ -19,14 +19,22 @@
   <ItemGroup>
     <Folder Include="Infrastructure\Midddlewares\" />
     <Folder Include="Infrastructure\Filters\" />
+    <Folder Include="Infrastructure\Mapper\" />
     <Folder Include="Infrastructure\Swagger\" />
-    <Folder Include="Requests\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OSA.Database\OSA.Database.csproj" />
     <ProjectReference Include="..\OSA.Services\OSA.Services.csproj" />
     <ProjectReference Include="..\OSA.Utility\OSA.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\Dot Net\Projects\OSA\OSA\Infrastructure\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\Dot Net\Projects\OSA\OSA\Infrastructure\.editorconfig" />
   </ItemGroup>
 
 </Project>

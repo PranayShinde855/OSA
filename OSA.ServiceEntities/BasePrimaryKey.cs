@@ -8,7 +8,7 @@ namespace OSA.ServiceEntities
         public int Id { get; set; }
     }
 
-    public class ServiceProperties: BaseKey
+    public class AuditProperty: BaseKey
     {
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
