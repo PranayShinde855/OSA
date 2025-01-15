@@ -27,7 +27,7 @@
         public string Logo { get; set; } = string.Empty;
     }
 
-    public class CompanyGetByIdDto : BaseIdKey
+    public class GetByIdCompanyDto : BaseIdKey
     {
     }
 

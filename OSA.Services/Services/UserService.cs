@@ -16,7 +16,7 @@ namespace OSA.Services.Services
         {
             try
             {
-                var data = _uniOfWork.UserRepository.Add(requestDto);
+                var data =await _uniOfWork.UserRepository.AddAsync(requestDto);
                 await _uniOfWork.SaveChanges();
                 return data;
             }

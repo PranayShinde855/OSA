@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OSA.Database\OSA.Database.csproj" />
     <ProjectReference Include="..\OSA.DomainEntities\OSA.DomainEntities.csproj" />
   </ItemGroup>

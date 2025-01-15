@@ -1,4 +1,6 @@
-﻿using OSA.Database.Infrastructure;
+﻿using AutoMapper;
+using OSA.Database.Infrastructure;
+using OSA.DomainEntities;
 using OSA.ServiceEntities;
 using OSA.Services.Interfaces;
 
@@ -7,19 +9,27 @@ namespace OSA.Services.Services
     public class CompanyService : ICompanyService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CompanyService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public CompanyService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public Task<bool> AddAsync(AddCompanyDto requestDto)
+        public async Task<bool> AddAsync(AddCompanyDto requestDto)
         {
-            throw new NotImplementedException();
+            var company = _mapper.Map<Company>(requestDto);
+            await _unitOfWork.CompanyRepository.AddAsync(company);
+            await _unitOfWork.SaveChanges();
+            return true;
         }
 
-        public Task<bool> DeleteAsync(DeleteCompanyDto requestDto)
+        public async Task<bool> DeleteAsync(DeleteCompanyDto requestDto)
         {
-            throw new NotImplementedException();
+            var company = await _unitOfWork.CompanyRepository.GetByIdAsync(requestDto.Id);
+            company.IsActive = false;
+            _unitOfWork.CompanyRepository.Update(company);
+            return true;
         }
 
         public Task<CompanyDto> GetAllAsync()
@@ -27,14 +37,19 @@ namespace OSA.Services.Services
             throw new NotImplementedException();
         }
 
-        public Task<CompanyDto> GetByIdAsync(CompanyGetByIdDto requestDto)
+        public async Task<CompanyDto> GetByIdAsync(GetByIdCompanyDto requestDto)
         {
-            throw new NotImplementedException();
+            var company = await _unitOfWork.CompanyRepository.GetByIdAsync(requestDto.Id);
+            var result = _mapper.Map<CompanyDto>(company);
+            return result;
         }
 
-        public Task<bool> UpdateAsync(UpdateCompanyDto requestDto)
+        public async Task<bool> UpdateAsync(UpdateCompanyDto requestDto)
         {
-            throw new NotImplementedException();
+            var company = await _unitOfWork.CompanyRepository.GetByIdAsync(requestDto.Id);
+            company = _mapper.Map<Company>(requestDto);
+            _unitOfWork.CompanyRepository.Update(company);
+            return true;
         }
     }
 }

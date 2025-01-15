@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Hosting;
 using OSA.API.Infrastructure.Extensions;
 using OSA.Utility;
 
@@ -20,7 +21,7 @@ builder.Services.AddSwaggerGen();
 services.RegisterServices();
 services.RegisterRepositories();
 services.ConfigureDatabase(builder.Configuration);
-
+services.AddAutoMapper(typeof(Program));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
