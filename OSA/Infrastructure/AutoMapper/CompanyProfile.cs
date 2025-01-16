@@ -10,6 +10,7 @@ namespace OSA.API.Infrastructure.AutoMapper
         public CompanyProfile()
         {
             CreateMap<CompanyRequest, CompanyDto>();   
+            CreateMap<Company, CompanyDto>().ReverseMap();   
             CreateMap<AddCompanyRequest, AddCompanyDto>();   
             CreateMap<UpdateCompanyRequest, UpdateCompanyDto>();   
             CreateMap<DeleteCompanyRequest, DeleteCompanyDto>();   

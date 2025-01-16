@@ -8,20 +8,21 @@ namespace OSA.Database.Infrastructure
     public class Repository<T> : IRepository<T> where T : class
     {
         public readonly OSADbContext _context;
-        public Repository(OSADbContext context)
+        protected Repository(OSADbContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public async Task<T> AddAsync(T entity)
         {
-            await this._context.Set<T>().AddAsync(entity);
-            return entity;
+            var en = await _context.Set<T>().AddAsync(entity);
+            //_context.SaveChanges();
+            return en.Entity;
         }
 
         public async Task<bool> Delete(T entity)
         {
-            this._context.Set<T>().Remove(entity);
+            _context.Set<T>().Remove(entity);
             return true;
         }
 
@@ -29,22 +30,22 @@ namespace OSA.Database.Infrastructure
         {
             if(predicate == null)
             {
-                return this._context.Set<T>();
+                return _context.Set<T>();
             }
             else
             {
-                return this._context.Set<T>().Where(predicate);
+                return _context.Set<T>().Where(predicate);
             }
         }
 
         public async Task<List<T>> GetAllAsync()
         {
-            return await this._context.Set<T>().ToListAsync();
+            return await _context.Set<T>().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await this._context.Set<T>().FindAsync(id);
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> prdicate = null, bool eager = false)
@@ -54,11 +55,11 @@ namespace OSA.Database.Infrastructure
 
         public IQueryable<T> Query(bool eager = false)
         {
-            var query = this._context.Set<T>().AsQueryable();
+            var query = _context.Set<T>().AsQueryable();
 
             if (eager)
             {
-                foreach (var property in this._context.Model.FindEntityType(typeof(T)).GetNavigations())
+                foreach (var property in _context.Model.FindEntityType(typeof(T)).GetNavigations())
                 {
                     query = query.Include(property.Name);
                 }
@@ -68,7 +69,7 @@ namespace OSA.Database.Infrastructure
 
         public async Task<T> Update(T entity)
         {
-            this._context.Set<T>().Update(entity);
+            _context.Set<T>().Update(entity);
             return entity;
         }
     }

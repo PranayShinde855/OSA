@@ -14,7 +14,6 @@ namespace OSA.API.Infrastructure.Extensions
     {
         public static void RegisterRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>))
                 .AddTransient<IUserRepository, UserRepository>()
                 .AddTransient<ICompanyRepository, CompanyRepository>()
@@ -54,7 +53,8 @@ namespace OSA.API.Infrastructure.Extensions
                     //        errorNumbersToAdd: null
                     //    );
                     //});
-                }, ServiceLifetime.Transient);
+                    }, ServiceLifetime.Scoped);
+                //});
             }
             catch (Exception ex)
             {
@@ -63,6 +63,7 @@ namespace OSA.API.Infrastructure.Extensions
                 Console.WriteLine($"Stack Trace: {ex.StackTrace}"); throw;
             }
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             
         }
         public static void GetAppSettingSection(this IServiceCollection services, IConfiguration configuration, out AppSettings appSettings)

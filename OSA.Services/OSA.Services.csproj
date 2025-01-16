@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OSA.Database\OSA.Database.csproj" />
     <ProjectReference Include="..\OSA.DomainEntities\OSA.DomainEntities.csproj" />
+    <ProjectReference Include="..\OSA.Utility\OSA.Utility.csproj" />
   </ItemGroup>
 
 </Project>

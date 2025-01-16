@@ -28,7 +28,7 @@ namespace OSA.Services.Services
 
         public Task<List<User>> GetAsync()
         {
-            return _uniOfWork.UserRepository.GetAll();
+            return _uniOfWork.UserRepository.GetAllAsync();
         }
     }
 }

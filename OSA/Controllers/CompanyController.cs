@@ -23,18 +23,16 @@ namespace OSA.API.Controllers
         }
 
         [HttpPost("GetAllAsync")]
-        public async Task<bool> GetAllAsync()
+        public async Task<List<CompanyDto>> GetAllAsync()
         {
-            var d = await _companyService.GetAllAsync();
-            return true;
+            return await _companyService.GetAllAsync();
         }
 
         [HttpPost("GetByIdAsync")]
-        public async Task<bool> GetByIdAsync(GetByIdCompanyDto request)
+        public async Task<CompanyDto> GetByIdAsync(GetByIdCompanyDto request)
         {
             var requestDto = _mapper.Map<GetByIdCompanyDto>(request);
-            var d = await _companyService.GetByIdAsync(requestDto);
-            return true;
+            return await _companyService.GetByIdAsync(requestDto);
         }
 
         [HttpPost("AddAsync")]

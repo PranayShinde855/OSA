@@ -11,14 +11,14 @@ namespace OSA.Database.Infrastructure
         public UnitOfWork(OSADbContext context, IUserRepository userRepository
             , ICompanyRepository companyRepository)
         {
-            this._context = context;
+            _context = context;
             UserRepository = userRepository;
             CompanyRepository = companyRepository;
         }
 
         public async Task<int> SaveChanges()
         {
-                return await this._context.SaveChangesAsync();
+                return await _context.SaveChangesAsync();
         }
     }
 }
